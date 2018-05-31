@@ -1,31 +1,28 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Threading;
 using UnityEngine;
 
 public class CameraHandler : MonoBehaviour {
 
-	public Transform Target;
 	public GameObject Scene;
 	public GameObject MarkedObject;
 	public Material WoodenMat;
 	public Material MarkedMat;
 	public int AmoutScreenshot;
 
-	private bool isCoroutineFinished = true;
-
+	private bool _isCoroutineFinished;
+	private int _index;
 
 	public string ScreenshotDir
 	{
 		get { return Application.streamingAssetsPath + "/ScreenShots"; }
 	}
 
-	private int index;
 
 	private void Start()
 	{
-		index = 0;
+		_index = 0;
+		_isCoroutineFinished = true;
 	}
 
 	// Update is called once per frame
@@ -34,12 +31,12 @@ public class CameraHandler : MonoBehaviour {
 
 		//if (Input.GetKeyDown("c"))
 		//{
-		if (index < AmoutScreenshot && isCoroutineFinished)
+		if (_index < AmoutScreenshot && _isCoroutineFinished)
 		{
-			isCoroutineFinished = false;
+			_isCoroutineFinished = false;
 			transform.position = SetRandomCameraPos();
 			Debug.Log("Camera Random Pos " + transform.position);
-			transform.LookAt(Target);
+			transform.LookAt(MarkedObject.transform);
 			StartCoroutine(TakeScreenshots());
 		}
 		//}
@@ -70,16 +67,16 @@ public class CameraHandler : MonoBehaviour {
 	/// </summary>
 	public IEnumerator TakeScreenshots()
 	{
-		//takes a screenshot from the cameraview 
+		// takes a screenshot from the cameraview with the wooden material
 		SetMaterialOfObject(MarkedObject, WoodenMat);
 		yield return StartCoroutine(CaptureScreenshot(false));
 
+		// takes a screenshot from the cameraview with the marked material
 		SetMaterialOfObject(MarkedObject, MarkedMat);
 		yield return StartCoroutine(CaptureScreenshot(true));
 
-		index++;
-
-		isCoroutineFinished = true;
+		_index++;
+		_isCoroutineFinished = true;
 	}
 
 	/// <summary>
@@ -106,42 +103,62 @@ public class CameraHandler : MonoBehaviour {
 		return false;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="go"></param>
+	/// <param name="material"></param>
 	private void SetMaterialOfObject(GameObject go, Material material)
 	{
-		go.GetComponent<Renderer>().material = material;
+		if (go.GetComponent<Renderer>() != null)
+		{
+			go.GetComponent<Renderer>().material = material;
+			
+		}
+		
 		foreach (Transform child in go.transform)
 		{
-			child.GetComponent<Renderer>().material = material;
+			if (child.GetComponent<Renderer>() != null)
+			{
+				child.GetComponent<Renderer>().material = material;
+			}
 		}
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="isMarked"></param>
+	/// <returns></returns>
 	IEnumerator CaptureScreenshot(bool isMarked)
 	{
+		// waits for the next render step, so that the material is set
 		yield return new WaitForEndOfFrame();
 
-		string ScreenshotName = "screenshot" + index + ".png";
-
-		if (isMarked) ScreenshotName = "screenshot" + index + "_marked" + ".png";
-
-		string path = Path.Combine(ScreenshotDir, ScreenshotName);
+		// setting the path
+		string screenshotName = "screenshot" + _index + ".png";
+		if (isMarked) screenshotName = "screenshot" + _index + "_marked" + ".png";
+		string path = Path.Combine(ScreenshotDir, screenshotName);
 
 		if (!Directory.Exists(ScreenshotDir))
 		{
 			Directory.CreateDirectory(ScreenshotDir);
 		}
 
+		// takes the screenshot 
 		Texture2D screenImage = new Texture2D(Screen.width, Screen.height);
+		
 		//Get Image from screen
 		screenImage.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
 		screenImage.Apply();
+		
 		//Convert to png
 		byte[] imageBytes = screenImage.EncodeToPNG();
 
 		//Save image to file
-
 		File.WriteAllBytes(path, imageBytes);
 
-		Debug.Log("ANKOMMER: Screenshot to: " + path);
+		Debug.Log("Screenshot was taken to: " + path);
 	}
 
 
