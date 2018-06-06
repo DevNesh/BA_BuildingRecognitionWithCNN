@@ -15,7 +15,12 @@ public class CameraHandler : MonoBehaviour {
 
 	public string ScreenshotDir
 	{
-		get { return Application.streamingAssetsPath + "/ScreenShots"; }
+		get { return Application.streamingAssetsPath + "/ScreenShots/Original"; }
+	}
+
+	public string ScreenshotDir2
+	{
+		get { return Application.streamingAssetsPath + "/ScreenShots/Marked"; }
 	}
 
 
@@ -137,13 +142,13 @@ public class CameraHandler : MonoBehaviour {
 
 		// setting the path
 		string screenshotName = "screenshot" + _index + ".png";
-		if (isMarked) screenshotName = "screenshot" + _index + "_marked" + ".png";
-		string path = Path.Combine(ScreenshotDir, screenshotName);
+		//if (isMarked) screenshotName = "screenshot" + _index + "_marked" + ".png";
 
-		if (!Directory.Exists(ScreenshotDir))
-		{
-			Directory.CreateDirectory(ScreenshotDir);
-		}
+
+		if (!Directory.Exists(ScreenshotDir)) Directory.CreateDirectory(ScreenshotDir);
+		if (!Directory.Exists(ScreenshotDir2)) Directory.CreateDirectory(ScreenshotDir2);
+
+		string path = (!isMarked) ? Path.Combine(ScreenshotDir, screenshotName) : Path.Combine(ScreenshotDir2, screenshotName); 
 
 		// takes the screenshot 
 		Texture2D screenImage = new Texture2D(Screen.width, Screen.height);

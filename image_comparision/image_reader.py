@@ -3,9 +3,12 @@ import cv2 as cv2
 import os, errno
 
 ### Variables ###
-inputPath = 'C:/Users/wohlfart/Desktop/test/Input'
-outputPath = 'C:/Users/wohlfart/Desktop/test/Output'
-markedColor = (0.0, 0.0, 255)
+inputPathOriginal = 'C:/Users/wohlfart/Desktop/dataset/unity_output/original'
+inputPathMarked = 'C:/Users/wohlfart/Desktop/dataset/unity_output/marked'
+
+outputPathMask = 'C:/Users/wohlfart/Desktop/dataset/masks'
+outputPathOriginal = 'C:/Users/wohlfart/Desktop/dataset/images'
+markedColor = (255, 255, 255)
 
 ### Functions ###
 
@@ -17,8 +20,8 @@ def stop():
 
 def createDifferenceImage(image1, image2):
 
-    test1 = cv2.cv.LoadImage(inputPath + '/' + image1)
-    test2 = cv2.cv.LoadImage(inputPath + '/' + image2)
+    test1 = cv2.cv.LoadImage(inputPathOriginal + '/' + image1)
+    test2 = cv2.cv.LoadImage(inputPathMarked + '/' + image2)
     blank_image = np.zeros((test1.height,test1.width,3), np.uint8)
 
     for x in range(test1.height):
@@ -26,38 +29,36 @@ def createDifferenceImage(image1, image2):
             if (test1[x,y] != test2[x,y]):
                 blank_image[x,y] = markedColor
     
-    resultName = image1.split('.',1)
-    resultName = resultName[0] + '_output.png'
-
-    resultName = outputPath + '/' + resultName
-    cv2.imwrite(resultName,blank_image)
+    cv2.imwrite(outputPathMask + '/' + image1,blank_image)
+    cv2.imwrite(outputPathOriginal + '/' + image1, cv2.imread(inputPathOriginal + '/' + image1))
 
 
-def traverseOverImageFolder(directory):
-    if os.path.exists(directory):
-        images = os.listdir(directory)
+def traverseOverImageFolders(directoryOriginal, directoryMarked):
+    if os.path.exists(directoryOriginal):
+        imagesOriginal = os.listdir(directoryOriginal)
+        imagesMarked = os.listdir(directoryMarked)
         index = 0
-        while index < len(images):
-            img1 = images[index]
-            img2 = images[index+1]
+        while index < len(imagesOriginal):
+            img1 = imagesOriginal[index]
+            img2 = imagesMarked[index]
             createDifferenceImage(img1, img2)
-            index += 2
+            index += 1
     else:
-        print ('The following path does not exists:',directory)
+        print ('The following path does not exists:',directoryOriginal)
 
 
 ### Calls ###  
-if (os.path.exists(inputPath)):
+if (os.path.exists(inputPathOriginal)):
     
     #check for existing output path, if not make one
-    if not os.path.exists(outputPath):
+    if not os.path.exists(outputPathOriginal):
         try:
-            os.makedirs(outputPath)
+            os.makedirs(outputPathOriginal)
         except OSError as e:
             if e.errno != errno.EEXIST:
                 raise
 
-    traverseOverImageFolder(inputPath)
+    traverseOverImageFolders(inputPathOriginal, inputPathMarked)
 
 else:
     print ('The inputPath does not exist')
