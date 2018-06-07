@@ -34,17 +34,16 @@ public class CameraHandler : MonoBehaviour {
 	void Update ()
 	{
 
-		//if (Input.GetKeyDown("c"))
-		//{
-		if (_index < AmoutScreenshot && _isCoroutineFinished)
+		if (Input.GetKeyDown("c"))
 		{
-			_isCoroutineFinished = false;
-			transform.position = SetRandomCameraPos();
-			Debug.Log("Camera Random Pos " + transform.position);
-			transform.LookAt(MarkedObject.transform);
-			StartCoroutine(TakeScreenshots());
+			if (_index < AmoutScreenshot && _isCoroutineFinished)
+			{
+				_isCoroutineFinished = false;
+				transform.position = SetRandomCameraPos();
+				transform.LookAt(MarkedObject.transform);
+				StartCoroutine(TakeScreenshots());
+			}
 		}
-		//}
 	}
 
 	/// <summary>
@@ -95,13 +94,11 @@ public class CameraHandler : MonoBehaviour {
 		{
 			if (child.GetComponent<BoxCollider>() != null && child.GetComponent<BoxCollider>().bounds.Contains(pos))
 			{
-				Debug.Log("INSIDE BUILDING" + pos);
 				return true;
 			}
 
 			if (child.GetComponent<SphereCollider>() != null && child.GetComponent<SphereCollider>().bounds.Contains(pos))
 			{
-				Debug.Log("INSIDE BUILDING" + pos);
 				return true;
 			}
 		}
@@ -135,15 +132,13 @@ public class CameraHandler : MonoBehaviour {
 	/// </summary>
 	/// <param name="isMarked"></param>
 	/// <returns></returns>
-	IEnumerator CaptureScreenshot(bool isMarked)
+	public IEnumerator CaptureScreenshot(bool isMarked)
 	{
 		// waits for the next render step, so that the material is set
 		yield return new WaitForEndOfFrame();
 
 		// setting the path
 		string screenshotName = "screenshot" + _index + ".png";
-		//if (isMarked) screenshotName = "screenshot" + _index + "_marked" + ".png";
-
 
 		if (!Directory.Exists(ScreenshotDir)) Directory.CreateDirectory(ScreenshotDir);
 		if (!Directory.Exists(ScreenshotDir2)) Directory.CreateDirectory(ScreenshotDir2);
