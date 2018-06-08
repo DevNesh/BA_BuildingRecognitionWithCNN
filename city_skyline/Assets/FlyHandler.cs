@@ -74,7 +74,7 @@ public class FlyHandler : MonoBehaviour {
 					else
 					{
 						Instantiate(Cube, transform.position, Quaternion.identity);
-						yield return null; //StartCoroutine(CameraHandler.TakeScreenshots());
+						yield return null;// StartCoroutine(CameraHandler.TakeScreenshots());
 					}
 				}
 			}
