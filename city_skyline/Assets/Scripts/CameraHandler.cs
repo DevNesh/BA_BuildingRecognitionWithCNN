@@ -158,7 +158,7 @@ public class CameraHandler : MonoBehaviour {
 		//Save image to file
 		File.WriteAllBytes(path, imageBytes);
 
-		Debug.Log("Screenshot was taken to: " + path);
+		//Debug.Log("Screenshot was taken to: " + path);
 	}
 
 
