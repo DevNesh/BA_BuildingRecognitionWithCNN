@@ -15,12 +15,12 @@ public class CameraHandler : MonoBehaviour {
 
 	public string ScreenshotDir
 	{
-		get { return "C:/Users/wohlfart/Desktop/dataset2/Original"; }
+		get { return "C:/Users/wohlfart/Desktop/Datasets/dataset3/Original"; }
 	}
 
 	public string ScreenshotDir2
 	{
-		get { return "C:/Users/wohlfart/Desktop/dataset2/Marked"; }
+		get { return "C:/Users/wohlfart/Desktop/Datasets/dataset3/Marked"; }
 	}
 
 
@@ -41,7 +41,7 @@ public class CameraHandler : MonoBehaviour {
 				_isCoroutineFinished = false;
 				transform.position = SetRandomCameraPos();
 				transform.LookAt(MarkedObject.transform);
-				StartCoroutine(TakeScreenshots());
+				StartCoroutine(TakeScreenshots(_index));
 			}
 		}
 	}
@@ -69,8 +69,9 @@ public class CameraHandler : MonoBehaviour {
 	/// <summary>
 	/// 
 	/// </summary>
-	public IEnumerator TakeScreenshots()
+	public IEnumerator TakeScreenshots(int index)
 	{
+		_index = index;
 		// takes a screenshot from the cameraview with the wooden material
 		SetMaterialOfObject(MarkedObject, WoodenMat);
 		yield return StartCoroutine(CaptureScreenshot(false));
@@ -79,7 +80,7 @@ public class CameraHandler : MonoBehaviour {
 		SetMaterialOfObject(MarkedObject, MarkedMat);
 		yield return StartCoroutine(CaptureScreenshot(true));
 
-		_index++;
+		//_index++;
 		_isCoroutineFinished = true;
 	}
 

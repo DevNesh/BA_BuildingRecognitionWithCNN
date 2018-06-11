@@ -57,8 +57,17 @@ public class FlyHandler : MonoBehaviour {
 			yield return null;
 		else
 		{
-			//Instantiate(FocusPoint, transform.position, Quaternion.identity);
-			yield return StartCoroutine(CameraHandler.TakeScreenshots());
+			i++;
+			if (i > 2873)
+			{
+				//Instantiate(FocusPoint, transform.position, Quaternion.identity);
+				yield return StartCoroutine(CameraHandler.TakeScreenshots(i));
+			}
+			else
+			{
+				Debug.Log(i);
+				yield return null;
+			}
 		}
 	}
 
@@ -88,8 +97,15 @@ public class FlyHandler : MonoBehaviour {
 						yield return null;
 					else
 					{
-						//Instantiate(FocusPoint, transform.position, Quaternion.identity);
-						yield return  StartCoroutine(CameraHandler.TakeScreenshots());
+						i++;
+						if (i > 2873)
+						{
+							//Instantiate(FocusPoint, transform.position, Quaternion.identity);
+							yield return StartCoroutine(CameraHandler.TakeScreenshots(i));
+						} else
+						{
+							yield return null;
+						}
 					}
 				}
 			}
@@ -133,7 +149,6 @@ public class FlyHandler : MonoBehaviour {
 
 					CamPos += CalculateRandomOffset();
 					transform.position = CamPos;
-					i += 2;
 					//Debug.Log(i);
 
 					yield return StartCoroutine(method());

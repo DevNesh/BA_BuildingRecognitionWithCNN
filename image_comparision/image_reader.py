@@ -3,11 +3,11 @@ import cv2 as cv2
 import os, errno
 
 ### Variables ###
-inputPathOriginal = 'C:/Users/wohlfart/Desktop/dataset2/Original'
-inputPathMarked = 'C:/Users/wohlfart/Desktop/dataset2/Marked'
+inputPathOriginal = 'C:/Users/wohlfart/Desktop/Datasets/dataset3/Original'
+inputPathMarked = 'C:/Users/wohlfart/Desktop/Datasets/dataset3//Marked'
 
-outputPathMask = 'C:/Users/wohlfart/Desktop/dataset2/masks'
-outputPathOriginal = 'C:/Users/wohlfart/Desktop/dataset2/images'
+outputPathMask = 'C:/Users/wohlfart/Desktop/Datasets/dataset3/masks'
+outputPathOriginal = 'C:/Users/wohlfart/Desktop/Datasets/dataset3/images'
 markedColor = (255, 255, 255)
 
 ### Functions ###
