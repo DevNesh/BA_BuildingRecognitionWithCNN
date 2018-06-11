@@ -57,8 +57,8 @@ public class FlyHandler : MonoBehaviour {
 			yield return null;
 		else
 		{
-			Instantiate(FocusPoint, transform.position, Quaternion.identity);
-			yield return null;// StartCoroutine(CameraHandler.TakeScreenshots());
+			//Instantiate(FocusPoint, transform.position, Quaternion.identity);
+			yield return StartCoroutine(CameraHandler.TakeScreenshots());
 		}
 	}
 
@@ -81,15 +81,15 @@ public class FlyHandler : MonoBehaviour {
 			{
 				for (float y = bb.min.y; y <= bb.max.y; y += YSteps)
 				{
-					Instantiate(ScenePoint, new Vector3(x, y, z), Quaternion.identity);
+					//Instantiate(ScenePoint, new Vector3(x, y, z), Quaternion.identity);
 					transform.LookAt(new Vector3(x, y, z));
 
 					if (CameraHandler.IsInsideBuilding(transform.position))
 						yield return null;
 					else
 					{
-						Instantiate(FocusPoint, transform.position, Quaternion.identity);
-						yield return null;// StartCoroutine(CameraHandler.TakeScreenshots());
+						//Instantiate(FocusPoint, transform.position, Quaternion.identity);
+						yield return  StartCoroutine(CameraHandler.TakeScreenshots());
 					}
 				}
 			}
