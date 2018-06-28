@@ -15,12 +15,12 @@ public class CameraHandler : MonoBehaviour {
 
 	public string ScreenshotDir
 	{
-		get { return "C:/Users/wohlfart/Desktop/Datasets/dataset3/Original"; }
+		get { return "C:/Users/wohlfart/Desktop/Datasets/dataset6/Original"; }
 	}
 
 	public string ScreenshotDir2
 	{
-		get { return "C:/Users/wohlfart/Desktop/Datasets/dataset3/Marked"; }
+		get { return "C:/Users/wohlfart/Desktop/Datasets/dataset6/Marked"; }
 	}
 
 

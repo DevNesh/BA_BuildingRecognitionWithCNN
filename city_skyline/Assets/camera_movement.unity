@@ -940,7 +940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraHandler: {fileID: 341682147}
   XRadiusSteps: 10
-  YRotationSteps: 16
+  YRotationSteps: 10
   ZRotationSteps: 8
   FocusPoint: {fileID: 1123093537427518, guid: 2c3847fabc94d5e42aeef261affcce2d, type: 2}
   Target: {fileID: 703549047}

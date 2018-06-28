@@ -15,7 +15,7 @@ public class FlyHandler : MonoBehaviour {
 	public GameObject FocusPoint;
 	public GameObject Target;
 
-	public float minDistanceFocus = 10;
+	public float minDistanceFocus = 30;
 	public float maxDistanceFocus = 70;
 
 	[Header("Scene Screenshots")]
@@ -27,7 +27,7 @@ public class FlyHandler : MonoBehaviour {
 
 	public int CubeSteps = 1;
 
-	private const float ZRotationAngle = 90;
+	private const float ZRotationAngle = 70;
 	private const float YRotationAngle = 360;
 
 	private int i = 0;
@@ -51,23 +51,28 @@ public class FlyHandler : MonoBehaviour {
 	public IEnumerator TakeScreenShotToFocusPoint()
 	{
 		transform.position += Target.transform.position;
+		transform.position = new Vector3(transform.position.x, transform.position.y - Target.transform.position.y, transform.position.z);
 		transform.LookAt(Target.transform.position);
 
 		if (CameraHandler.IsInsideBuilding(transform.position))
+		{
 			yield return null;
+		}
 		else
 		{
 			i++;
-			if (i > 2873)
-			{
-				//Instantiate(FocusPoint, transform.position, Quaternion.identity);
-				yield return StartCoroutine(CameraHandler.TakeScreenshots(i));
-			}
-			else
-			{
-				Debug.Log(i);
-				yield return null;
-			}
+			//if (i > 2873)
+			//{
+			//Debug.Log("Ankommer");
+			//Instantiate(FocusPoint, transform.position, Quaternion.identity);
+			Debug.Log(i);
+			yield return StartCoroutine(CameraHandler.TakeScreenshots(i));
+			//}
+			//else
+			//{
+			//	Debug.Log(i);
+			//	yield return null;
+			//}
 		}
 	}
 
@@ -97,15 +102,9 @@ public class FlyHandler : MonoBehaviour {
 						yield return null;
 					else
 					{
-						i++;
-						if (i > 2873)
-						{
-							//Instantiate(FocusPoint, transform.position, Quaternion.identity);
-							yield return StartCoroutine(CameraHandler.TakeScreenshots(i));
-						} else
-						{
-							yield return null;
-						}
+					i++;
+					//Instantiate(FocusPoint, transform.position, Quaternion.identity);
+					yield return StartCoroutine(CameraHandler.TakeScreenshots(i));
 					}
 				}
 			}
@@ -127,10 +126,8 @@ public class FlyHandler : MonoBehaviour {
 
 		for (float x = minDistance; x <= maxDistance; x += xIncrease)
 		{
-
 			for (float z = 0; z <= ZRotationAngle -10; z += zIncrease)
 			{
-
 				//Increase the y steps for important Views
 				if (x > (maxDistance / 2) && z < ZRotationAngle / 3) yIncrease = tmp /3;
 				if (x > (maxDistance * 0.75) && z < ZRotationAngle / 3)
@@ -139,20 +136,19 @@ public class FlyHandler : MonoBehaviour {
 				}
 
 					for (float y = 0; y <= YRotationAngle; y += yIncrease)
-				{
+					{
 
-					CamPos.y = x * Mathf.Sin(z * Mathf.PI / 180.0f);
-					CamPos.z = x * Mathf.Cos(z * Mathf.PI / 180.0f);
+						CamPos.y = x * Mathf.Sin(z * Mathf.PI / 180.0f);
+						CamPos.z = x * Mathf.Cos(z * Mathf.PI / 180.0f);
 
-					CamPos.x = CamPos.z * Mathf.Sin(y * Mathf.PI / 180.0f);
-					CamPos.z = CamPos.z * Mathf.Cos(y * Mathf.PI / 180.0f);
+						CamPos.x = CamPos.z * Mathf.Sin(y * Mathf.PI / 180.0f);
+						CamPos.z = CamPos.z * Mathf.Cos(y * Mathf.PI / 180.0f);
 
-					CamPos += CalculateRandomOffset();
-					transform.position = CamPos;
-					//Debug.Log(i);
-
+						CamPos += CalculateRandomOffset();
+						transform.position = CamPos;
+						//Debug.Log(i);
 					yield return StartCoroutine(method());
-				}
+					}
 			}
 		}
 	}
