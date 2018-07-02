@@ -15,8 +15,8 @@ public class FlyHandler : MonoBehaviour {
 	public GameObject FocusPoint;
 	public GameObject Target;
 
-	public float minDistanceFocus = 30;
-	public float maxDistanceFocus = 70;
+	public float minDistanceFocus = 100;
+	public float maxDistanceFocus = 140;
 
 	[Header("Scene Screenshots")]
 	public GameObject ScenePoint;
@@ -25,13 +25,19 @@ public class FlyHandler : MonoBehaviour {
 	public float minDistanceScene = 70;
 	public float maxDistanceScene = 100;
 
+	public float minDistanceToFocusPoint = 50;
+
 	public int CubeSteps = 1;
 
-	private const float ZRotationAngle = 70;
+	private const float ZRotationAngle = 80;
 	private const float YRotationAngle = 360;
 
 	private int i = 0;
 
+	private void Start()
+	{
+		i = 0;
+	}
 
 	private void Update()
 	{
@@ -50,10 +56,23 @@ public class FlyHandler : MonoBehaviour {
 
 	public IEnumerator TakeScreenShotToFocusPoint()
 	{
-		transform.position += Target.transform.position;
-		transform.position = new Vector3(transform.position.x, transform.position.y - Target.transform.position.y, transform.position.z);
-		transform.LookAt(Target.transform.position);
+		// transform.position += Target.transform.position;
+		// transform.position = new Vector3(transform.position.x, transform.position.y - Target.transform.position.y, transform.position.z);
+		// transform.LookAt(Target.transform.position);
 
+		// Look at the middle of the scene instead of the building
+		Bounds bb = BoundingBox.GetComponent<BoxCollider>().bounds;
+		Vector3 focusPoint = new Vector3(25, 30, -25);
+		transform.LookAt(focusPoint);
+
+		/*
+		if (CameraHandler.IsToCloseToViewpoint(transform.position, focusPoint, minDistanceToFocusPoint))
+		{
+			Instantiate(FocusPoint, transform.position, Quaternion.identity);
+		}
+		yield return null;
+		*/
+		
 		if (CameraHandler.IsInsideBuilding(transform.position))
 		{
 			yield return null;
@@ -61,19 +80,11 @@ public class FlyHandler : MonoBehaviour {
 		else
 		{
 			i++;
-			//if (i > 2873)
-			//{
-			//Debug.Log("Ankommer");
-			//Instantiate(FocusPoint, transform.position, Quaternion.identity);
+			Instantiate(FocusPoint, transform.position, Quaternion.identity);
 			Debug.Log(i);
-			yield return StartCoroutine(CameraHandler.TakeScreenshots(i));
-			//}
-			//else
-			//{
-			//	Debug.Log(i);
-			//	yield return null;
-			//}
+			yield return null;//StartCoroutine(CameraHandler.TakeScreenshots(i));
 		}
+	
 	}
 
 	private IEnumerator TakeScreenshotToAllViewPoints()
@@ -95,7 +106,7 @@ public class FlyHandler : MonoBehaviour {
 			{
 				for (float y = bb.min.y; y <= bb.max.y; y += YSteps)
 				{
-					//Instantiate(ScenePoint, new Vector3(x, y, z), Quaternion.identity);
+					Instantiate(ScenePoint, new Vector3(x, y, z), Quaternion.identity);
 					transform.LookAt(new Vector3(x, y, z));
 
 					if (CameraHandler.IsInsideBuilding(transform.position))
@@ -104,7 +115,7 @@ public class FlyHandler : MonoBehaviour {
 					{
 					i++;
 					//Instantiate(FocusPoint, transform.position, Quaternion.identity);
-					yield return StartCoroutine(CameraHandler.TakeScreenshots(i));
+					yield return null;//StartCoroutine(CameraHandler.TakeScreenshots(i));
 					}
 				}
 			}
@@ -126,7 +137,7 @@ public class FlyHandler : MonoBehaviour {
 
 		for (float x = minDistance; x <= maxDistance; x += xIncrease)
 		{
-			for (float z = 0; z <= ZRotationAngle -10; z += zIncrease)
+			for (float z = 10; z <= ZRotationAngle -10; z += zIncrease)
 			{
 				//Increase the y steps for important Views
 				if (x > (maxDistance / 2) && z < ZRotationAngle / 3) yIncrease = tmp /3;
@@ -144,7 +155,7 @@ public class FlyHandler : MonoBehaviour {
 						CamPos.x = CamPos.z * Mathf.Sin(y * Mathf.PI / 180.0f);
 						CamPos.z = CamPos.z * Mathf.Cos(y * Mathf.PI / 180.0f);
 
-						CamPos += CalculateRandomOffset();
+						//CamPos += CalculateRandomOffset();
 						transform.position = CamPos;
 						//Debug.Log(i);
 					yield return StartCoroutine(method());

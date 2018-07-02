@@ -7,7 +7,7 @@
 import skimage.io as io
 from skimage import data
 from skimage.transform import rescale, resize, rotate
-from skimage.morphology import erosion
+from skimage.morphology import erosion, dilation
 import warnings
 from skimage.color import rgb2gray
 from skimage.util import random_noise
@@ -69,9 +69,10 @@ def gammaChangeImage(img, gamma, gain):
 
 ### Functions, only for the masks
 def erosionOnImage(img):
-    x = erosion(img)
-    scipy.misc.imsave('outfile.jpg', x)
-    return x
+    return erosion(img)
+
+def dilationOnImage(img):
+    return dilation(img)
 
 
 '''

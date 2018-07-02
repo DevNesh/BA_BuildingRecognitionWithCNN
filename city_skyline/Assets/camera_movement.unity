@@ -944,13 +944,14 @@ MonoBehaviour:
   ZRotationSteps: 8
   FocusPoint: {fileID: 1123093537427518, guid: 2c3847fabc94d5e42aeef261affcce2d, type: 2}
   Target: {fileID: 703549047}
-  minDistanceFocus: 15
-  maxDistanceFocus: 70
+  minDistanceFocus: 40
+  maxDistanceFocus: 110
   ScenePoint: {fileID: 1865625459234320, guid: ebdd1deec6f3cc941a4d4de3f0f920ab, type: 2}
   BoundingBox: {fileID: 38549864}
-  minDistanceScene: 40
-  maxDistanceScene: 70
-  CubeSteps: 3
+  minDistanceScene: 50
+  maxDistanceScene: 80
+  minDistanceToFocusPoint: 40
+  CubeSteps: 2
 --- !u!1 &375524986
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,12 +15,12 @@ public class CameraHandler : MonoBehaviour {
 
 	public string ScreenshotDir
 	{
-		get { return "C:/Users/wohlfart/Desktop/Datasets/dataset6/Original"; }
+		get { return "C:/Users/wohlfart/Desktop/Datenset_iteration/hro/Original"; }
 	}
 
 	public string ScreenshotDir2
 	{
-		get { return "C:/Users/wohlfart/Desktop/Datasets/dataset6/Marked"; }
+		get { return "C:/Users/wohlfart/Desktop/Datenset_iteration/hro/Marked"; }
 	}
 
 
@@ -104,6 +104,18 @@ public class CameraHandler : MonoBehaviour {
 			}
 		}
 		return false;
+	}
+
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="pos"></param>
+	/// <returns></returns>
+	public bool IsToCloseToViewpoint(Vector3 pos, Vector3 focusPoint, float minDistance)
+	{
+		Vector3 connection = pos - focusPoint;
+		Vector3 connection2 = new Vector3(0, 0, 0) - focusPoint;
+		return connection.magnitude < minDistance && connection2.magnitude < 40;
 	}
 
 	/// <summary>

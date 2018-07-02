@@ -10,17 +10,20 @@ from skimage.util import random_noise
 from skimage.color import rgb2gray
 
 ### Variables ###
-inputPathOriginal = 'C:/Users/wohlfart/Desktop/Datenset_iteration/focus/Original/data'
-inputPathMarked = 'C:/Users/wohlfart/Desktop/Datenset_iteration/focus/Marked'
+inputPathOriginal = 'C:/Users/wohlfart/Desktop/Datenset_iteration/total/Original'
+inputPathMarked =   'C:/Users/wohlfart/Desktop/Datenset_iteration/total/Marked'
 
-outputPathMask = 'C:/Users/wohlfart/Desktop/Datenset_iteration/focus/masksCOLORED'
-outputPathOriginal = 'C:/Users/wohlfart/Desktop/Datenset_iteration/focus/imagesCOLORED'
+outputPathMask = 'C:/Users/wohlfart/Desktop/Datenset_iteration/no_augmentation/masks'
+outputPathOriginal = 'C:/Users/wohlfart/Desktop/Datenset_iteration/no_augmentation/images'
 markedColor = (255, 255, 255)
 
 ### Functions ###
 
 def saveAndProcessOriginalImage(img, imgPath):
     img = resize(img, (224,224))
+    #noise added on only 10 % of images
+    #if (random.randint(0,9) == 0):
+    #    img = ip.randomNoiseImage(img)
     io.imsave(imgPath, img)
 
 #Nach der Erstellung der Maske aufrufen 
@@ -95,7 +98,8 @@ def traverseOverImageFolders(directoryOriginal, directoryMarked):
             img2 = io.imread(inputPathMarked + '/' + imagesMarked[index], False)
 
             #preprocessing both images
-            images = preprocessingImages(img1,img2)
+            #images = preprocessingImages(img1,img2)
+            images = (img1,img2)
 
             #create the mask 
             createDifferenceImage(images[0], images[1], imagesOriginal[index])
