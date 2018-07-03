@@ -22,12 +22,12 @@ public class FlyHandler : MonoBehaviour {
 	public GameObject ScenePoint;
 	public GameObject BoundingBox;
 
+	public GameObject CamPoint;
+
 	public float minDistanceScene = 70;
 	public float maxDistanceScene = 100;
 
-	public float minDistanceToFocusPoint = 50;
-
-	public int CubeSteps = 1;
+	public int CubeDevisions = 1;
 
 	private const float ZRotationAngle = 80;
 	private const float YRotationAngle = 360;
@@ -62,29 +62,24 @@ public class FlyHandler : MonoBehaviour {
 
 		// Look at the middle of the scene instead of the building
 		Bounds bb = BoundingBox.GetComponent<BoxCollider>().bounds;
-		Vector3 focusPoint = new Vector3(25, 30, -25);
+		Vector3 focusPoint = new Vector3(0, 0, 0);
+		Instantiate(FocusPoint, focusPoint, Quaternion.identity);
 		transform.LookAt(focusPoint);
 
-		/*
-		if (CameraHandler.IsToCloseToViewpoint(transform.position, focusPoint, minDistanceToFocusPoint))
-		{
-			Instantiate(FocusPoint, transform.position, Quaternion.identity);
-		}
-		yield return null;
-		*/
-		
-		if (CameraHandler.IsInsideBuilding(transform.position))
+
+		if (CameraHandler.IsToCloseToViewpoint(transform.position, focusPoint) || CameraHandler.IsInsideBuilding(transform.position))
 		{
 			yield return null;
 		}
 		else
 		{
 			i++;
-			Instantiate(FocusPoint, transform.position, Quaternion.identity);
-			Debug.Log(i);
+			Instantiate(CamPoint, transform.position, Quaternion.identity);
+			//Debug.Log(i);
 			yield return null;//StartCoroutine(CameraHandler.TakeScreenshots(i));
 		}
-	
+
+
 	}
 
 	private IEnumerator TakeScreenshotToAllViewPoints()
@@ -95,9 +90,13 @@ public class FlyHandler : MonoBehaviour {
 		float height = bb.max.y - bb.min.y;
 		float depth = bb.max.z - bb.min.z;
 
-		float XSteps = witdh / (CubeSteps - 1);
-		float YSteps = height / (CubeSteps - 1);
-		float ZSteps = depth / (CubeSteps - 1);
+		float XSteps = witdh / (CubeDevisions);
+		float YSteps = height / (CubeDevisions);
+		float ZSteps = depth / (CubeDevisions);
+
+		Debug.Log(witdh);
+		Debug.Log(height);
+		Debug.Log(depth);
 
 
 		for (float x = bb.min.x; x <= bb.max.x; x += XSteps)
@@ -106,15 +105,19 @@ public class FlyHandler : MonoBehaviour {
 			{
 				for (float y = bb.min.y; y <= bb.max.y; y += YSteps)
 				{
-					Instantiate(ScenePoint, new Vector3(x, y, z), Quaternion.identity);
-					transform.LookAt(new Vector3(x, y, z));
+					Vector3 focusPoint = new Vector3(x, y, z);
+					//Instantiate(ScenePoint, focusPoint, Quaternion.identity);
+					transform.LookAt(focusPoint);
 
-					if (CameraHandler.IsInsideBuilding(transform.position))
+					if (CameraHandler.IsToCloseToViewpoint(transform.position, focusPoint)  || CameraHandler.IsInsideBuilding(transform.position) )
+					{
 						yield return null;
+					}
 					else
 					{
-					i++;
-					//Instantiate(FocusPoint, transform.position, Quaternion.identity);
+						i++;
+						Debug.Log(i);
+					Instantiate(FocusPoint, transform.position, Quaternion.identity);
 					yield return null;//StartCoroutine(CameraHandler.TakeScreenshots(i));
 					}
 				}
@@ -131,22 +134,26 @@ public class FlyHandler : MonoBehaviour {
 		float zIncrease = ZRotationAngle / ZRotationSteps;
 
 		Vector3 CamPos = new Vector3(0, 0, 0);
-		float tmp = yIncrease;
 
-		
+		float tmpY = yIncrease;
+		float tmpZ = zIncrease;
+
+
 
 		for (float x = minDistance; x <= maxDistance; x += xIncrease)
 		{
+
+
 			for (float z = 10; z <= ZRotationAngle -10; z += zIncrease)
 			{
 				//Increase the y steps for important Views
-				if (x > (maxDistance / 2) && z < ZRotationAngle / 3) yIncrease = tmp /3;
-				if (x > (maxDistance * 0.75) && z < ZRotationAngle / 3)
-				{
-					yIncrease = tmp / 4;
-				}
+				if (x > (maxDistance / 2) && z < ZRotationAngle / 3) yIncrease = tmpY /3;
+				if (x > (maxDistance * 0.75) && z < ZRotationAngle / 3)	yIncrease = tmpY / 4;
 
-					for (float y = 0; y <= YRotationAngle; y += yIncrease)
+				zIncrease = (z < (ZRotationAngle / 2)) ? (tmpZ*0.75f) : tmpZ;
+				Debug.Log("Ankommer: " + z);
+
+				for (float y = 0; y <= YRotationAngle; y += yIncrease)
 					{
 
 						CamPos.y = x * Mathf.Sin(z * Mathf.PI / 180.0f);
@@ -157,7 +164,7 @@ public class FlyHandler : MonoBehaviour {
 
 						//CamPos += CalculateRandomOffset();
 						transform.position = CamPos;
-						//Debug.Log(i);
+
 					yield return StartCoroutine(method());
 					}
 			}

@@ -9,6 +9,7 @@ public class CameraHandler : MonoBehaviour {
 	public Material WoodenMat;
 	public Material MarkedMat;
 	public int AmoutScreenshot;
+	public GameObject BoundingBoxes;
 
 	private bool _isCoroutineFinished;
 	private int _index;
@@ -111,11 +112,19 @@ public class CameraHandler : MonoBehaviour {
 	/// </summary>
 	/// <param name="pos"></param>
 	/// <returns></returns>
-	public bool IsToCloseToViewpoint(Vector3 pos, Vector3 focusPoint, float minDistance)
+	public bool IsToCloseToViewpoint(Vector3 pos, Vector3 focusPoint)
 	{
-		Vector3 connection = pos - focusPoint;
-		Vector3 connection2 = new Vector3(0, 0, 0) - focusPoint;
-		return connection.magnitude < minDistance && connection2.magnitude < 40;
+
+		Collider col; 
+
+		foreach (Transform child in BoundingBoxes.transform)
+		{
+			col = child.gameObject.GetComponent<Collider>();
+			if (col.bounds.Contains(pos) && col.bounds.Contains(focusPoint))
+				return true;
+		}
+
+		return false; 
 	}
 
 	/// <summary>
