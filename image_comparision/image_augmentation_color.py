@@ -10,11 +10,11 @@ from skimage.util import random_noise
 from skimage.color import rgb2gray
 
 ### Variables ###
-inputPathOriginal = 'C:/Users/wohlfart/Desktop/Datenset_iteration/total/Original'
-inputPathMarked =   'C:/Users/wohlfart/Desktop/Datenset_iteration/total/Marked'
+inputPathOriginal = 'C:/Users/wohlfart/Desktop/Datenset_Big/parts/00/Original'
+inputPathMarked =   'C:/Users/wohlfart/Desktop/Datenset_Big/parts/00/Marked'
 
-outputPathMask = 'C:/Users/wohlfart/Desktop/Datenset_iteration/no_augmentation/masks'
-outputPathOriginal = 'C:/Users/wohlfart/Desktop/Datenset_iteration/no_augmentation/images'
+outputPathMask = 'C:/Users/wohlfart/Desktop/Datenset_Big/cnn/masks'
+outputPathOriginal = 'C:/Users/wohlfart/Desktop/Datenset_Big/cnn/images'
 markedColor = (255, 255, 255)
 
 ### Functions ###
