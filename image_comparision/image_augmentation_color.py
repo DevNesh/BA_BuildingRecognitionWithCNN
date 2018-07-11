@@ -12,12 +12,13 @@ from skimage.color import rgb2gray
 from PIL import Image
 
 ### Variables ###
-inputPathOriginal = 'C:/Users/wohlfart/Desktop/Datenset_Big/parts/00/Original'
-inputPathMarked =   'C:/Users/wohlfart/Desktop/Datenset_Big/parts/00/Marked'
+inputPathOriginal = 'C:/Users/wohlfart/Desktop/Datenset_Tower/parts/00/Original'
+inputPathMarked =   'C:/Users/wohlfart/Desktop/Datenset_Tower/parts/00/Marked'
 
-outputPathMask = 'C:/Users/wohlfart/Desktop/testbild/masks'
-outputPathOriginal = 'C:/Users/wohlfart/Desktop/testbild/images'
-markedColor = (1, 1, 1)
+outputPathMask = 'C:/Users/wohlfart/Desktop/Datenset_Tower/train/masks/data'
+outputPathOriginal = 'C:/Users/wohlfart/Desktop/Datenset_Tower/train/images/data'
+markedColor = 255       # 8Bit / WHITE 
+imageSize = (224,224)   # size of outputimages
 
 ### Functions ###
 
@@ -54,13 +55,13 @@ def flipImagesVertical(img1, img2):
 
 def createDifferenceImage(img1, img2, newName):
     
-    blank_image = np.zeros((224,224), dtype=np.uint8)
+    blank_image = np.zeros(imageSize, dtype=np.uint8)
 
     #fill every difference with white pixel 
     for x in range(img1.shape[0]):
         for y in range(img1.shape[1]):
             if (img1[x,y] != img2[x,y]):
-                blank_image[x,y] = 255
+                blank_image[x,y] = markedColor
 
     #erosion + dilation to remove some noise
     blank_image = ip.erosionOnImage(blank_image)
@@ -92,11 +93,12 @@ def traverseOverImageFolders(directoryOriginal, directoryMarked):
         imagesMarked = os.listdir(directoryMarked)
         index = 0
         while index < len(imagesOriginal):
+
             #read the images into a np array 
             img1 = io.imread(inputPathOriginal + '/' + imagesOriginal[index], True)
-            img1 = resize(img1, (224,224))
+            img1 = resize(img1, imageSize)
             img2 = io.imread(inputPathMarked + '/' + imagesMarked[index], True)
-            img2 = resize(img2, (224,224))
+            img2 = resize(img2, imageSize)
 
             #preprocessing both images
             #images = preprocessingImages(img1,img2)
