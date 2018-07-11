@@ -4,26 +4,29 @@ import os, errno
 import image_processing as ip
 import random 
 import skimage.io as io 
+import scipy as sc
 from skimage import data
 from skimage.transform import rescale, resize
 from skimage.util import random_noise
 from skimage.color import rgb2gray
+from PIL import Image
 
 ### Variables ###
 inputPathOriginal = 'C:/Users/wohlfart/Desktop/Datenset_Big/parts/00/Original'
 inputPathMarked =   'C:/Users/wohlfart/Desktop/Datenset_Big/parts/00/Marked'
 
-outputPathMask = 'C:/Users/wohlfart/Desktop/Datenset_Big/cnn/masks'
-outputPathOriginal = 'C:/Users/wohlfart/Desktop/Datenset_Big/cnn/images'
-markedColor = (255, 255, 255)
+outputPathMask = 'C:/Users/wohlfart/Desktop/testbild/masks'
+outputPathOriginal = 'C:/Users/wohlfart/Desktop/testbild/images'
+markedColor = (1, 1, 1)
 
 ### Functions ###
 
 def saveAndProcessOriginalImage(img, imgPath):
-    img = resize(img, (224,224))
+
     #noise added on only 10 % of images
     #if (random.randint(0,9) == 0):
     #    img = ip.randomNoiseImage(img)
+    #Image.fromarray(img).save(imgPath)
     io.imsave(imgPath, img)
 
 #Nach der Erstellung der Maske aufrufen 
@@ -51,24 +54,20 @@ def flipImagesVertical(img1, img2):
 
 def createDifferenceImage(img1, img2, newName):
     
-    blank_image = np.zeros((img1.shape[0],img1.shape[1],3), np.uint8)
-    img1 = rgb2gray(img1)
-    img2 = rgb2gray(img2)
+    blank_image = np.zeros((224,224), dtype=np.uint8)
 
     #fill every difference with white pixel 
     for x in range(img1.shape[0]):
         for y in range(img1.shape[1]):
             if (img1[x,y] != img2[x,y]):
-                blank_image[x,y] = markedColor
-    
+                blank_image[x,y] = 255
+
     #erosion + dilation to remove some noise
     blank_image = ip.erosionOnImage(blank_image)
     blank_image = ip.dilationOnImage(blank_image)
 
     #save the mask    
-    blank_image = rgb2gray(blank_image)
-    blank_image = resize(blank_image,(224,224))
-    io.imsave(outputPathMask + '/' + newName,blank_image)
+    Image.fromarray(blank_image).save(outputPathMask + '/' + newName)
 
 def preprocessingImages(img1, img2):
 
@@ -94,8 +93,10 @@ def traverseOverImageFolders(directoryOriginal, directoryMarked):
         index = 0
         while index < len(imagesOriginal):
             #read the images into a np array 
-            img1 = io.imread(inputPathOriginal + '/' + imagesOriginal[index], False) 
-            img2 = io.imread(inputPathMarked + '/' + imagesMarked[index], False)
+            img1 = io.imread(inputPathOriginal + '/' + imagesOriginal[index], True)
+            img1 = resize(img1, (224,224))
+            img2 = io.imread(inputPathMarked + '/' + imagesMarked[index], True)
+            img2 = resize(img2, (224,224))
 
             #preprocessing both images
             #images = preprocessingImages(img1,img2)
