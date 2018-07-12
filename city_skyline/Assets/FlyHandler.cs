@@ -36,7 +36,7 @@ public class FlyHandler : MonoBehaviour {
 
 	private void Start()
 	{
-		i = 3064;
+		i = 0;
 	}
 
 	private void Update()
@@ -48,6 +48,7 @@ public class FlyHandler : MonoBehaviour {
 
 		if (Input.GetKeyDown("i"))
 		{
+			i = 3064;
 			StartCoroutine(CalculateOrbitCamera(minDistanceScene, maxDistanceScene, TakeScreenshotToAllViewPoints));
 		}
 	}
@@ -62,7 +63,7 @@ public class FlyHandler : MonoBehaviour {
 
 		// Look at the middle of the scene instead of the building
 		Bounds bb = BoundingBox.GetComponent<BoxCollider>().bounds;
-		Vector3 focusPoint = new Vector3(0, 0, 0);
+		Vector3 focusPoint = bb.center;
 		//Instantiate(FocusPoint, focusPoint, Quaternion.identity);
 		transform.LookAt(focusPoint);
 
@@ -107,7 +108,7 @@ public class FlyHandler : MonoBehaviour {
 				{
 					Vector3 focusPoint = new Vector3(x, y, z);
 					//Instantiate(ScenePoint, focusPoint, Quaternion.identity);
-					// transform.LookAt(focusPoint);
+					transform.LookAt(focusPoint);
 
 					if (CameraHandler.IsToCloseToViewpoint(transform.position, focusPoint)  || CameraHandler.IsInsideBuilding(transform.position) )
 					{
@@ -117,8 +118,8 @@ public class FlyHandler : MonoBehaviour {
 					{
 						i++;
 						Debug.Log(i);
-						Instantiate(FocusPoint, transform.position, Quaternion.identity);
-						yield return null; //StartCoroutine(CameraHandler.TakeScreenshots(i));
+						//Instantiate(FocusPoint, transform.position, Quaternion.identity);
+						yield return StartCoroutine(CameraHandler.TakeScreenshots(i));
 					}
 				}
 			}
