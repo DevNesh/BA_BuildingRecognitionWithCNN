@@ -16,12 +16,12 @@ public class CameraHandler : MonoBehaviour {
 
 	public string ScreenshotDir
 	{
-		get { return "C:/Users/wohlfart/Desktop/Datenset_Building22/Original"; }
+		get { return "C:/Users/wohlfart/Desktop/Datenset_skyscraper/Original"; }
 	}
 
 	public string ScreenshotDir2
 	{
-		get { return "C:/Users/wohlfart/Desktop/Datenset_Building22/Marked"; }
+		get { return "C:/Users/wohlfart/Desktop/Datenset_skyscraper/Marked"; }
 	}
 
 
@@ -74,8 +74,8 @@ public class CameraHandler : MonoBehaviour {
 	{
 		_index = index;
 		// takes a screenshot from the cameraview with the wooden material
-		SetMaterialOfObject(MarkedObject, WoodenMat);
-		yield return StartCoroutine(CaptureScreenshot(false));
+		//SetMaterialOfObject(MarkedObject, WoodenMat);
+		//yield return StartCoroutine(CaptureScreenshot(false));
 
 		// takes a screenshot from the cameraview with the marked material
 		SetMaterialOfObject(MarkedObject, MarkedMat);
