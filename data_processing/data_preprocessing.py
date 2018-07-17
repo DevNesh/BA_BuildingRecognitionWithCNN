@@ -1,7 +1,6 @@
 import numpy as np
-import cv2 as cv2
 import os, errno
-import image_processing as ip
+import utils as ip
 import random 
 import skimage.io as io 
 import scipy as sc

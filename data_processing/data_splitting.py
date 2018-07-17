@@ -10,7 +10,7 @@ from skimage.color import rgb2gray
 from sklearn.model_selection import train_test_split
 
 
-foldername = 'testbild'
+foldername = 'Datenset_TowerBuilding'
 
 ### Variables ###
 inputOriginal = '/home/dan/Desktop/' + foldername + '/train/images/data'
@@ -50,6 +50,7 @@ def traverseOverImageFolders(directoryOriginal):
             shutil.move(inputOriginal + '/' + validate_images[index], valDirImages + '/' + validate_images[index])
             shutil.move(inputMasks + '/' + validate_masks[index], valDirMasks + '/' + validate_masks[index])
             index += 1
+            
     else:
         print ('The following path does not exists:',directoryOriginal)
 
