@@ -11,11 +11,11 @@ from skimage.color import rgb2gray
 from PIL import Image
 
 ### Variables ###
-inputPathOriginal = 'C:/Users/wohlfart/Desktop/Datenset_Tower/parts/00/Original'
-inputPathMarked =   'C:/Users/wohlfart/Desktop/Datenset_Tower/parts/00/Marked'
+inputPathOriginal = 'C:/Users/wohlfart/Desktop/Datenset_skyscraper/Original'
+inputPathMarked =   'C:/Users/wohlfart/Desktop/Datenset_skyscraper/Marked'
 
-outputPathMask = 'C:/Users/wohlfart/Desktop/Datenset_Tower/train/masks/data'
-outputPathOriginal = 'C:/Users/wohlfart/Desktop/Datenset_Tower/train/images/data'
+outputPathMask = 'C:/Users/wohlfart/Desktop/tets/mask'
+outputPathOriginal = 'C:/Users/wohlfart/Desktop/tets/image'
 markedColor = 255       # 8Bit / WHITE 
 imageSize = (224,224)   # size of outputimages
 
