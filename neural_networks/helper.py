@@ -45,10 +45,10 @@ def adjustData(img,mask):
     mask = mask/255.
     return (img,mask)
 
-def loadData(inputPath, outputPath, batch_size=32,save_dir=None):
+def loadData(inputPath, outputPath, bs = 32, save_dir=None):
 
-    image_generator = ImageDataGenerator().flow_from_directory(inputPath, color_mode ='grayscale', target_size=(224,224), batch_size=1, class_mode=None, save_to_dir = save_dir, shuffle=False,seed=1)
-    mask_generator =  ImageDataGenerator().flow_from_directory(outputPath,  color_mode ='grayscale', target_size=(224,224), batch_size=1 , class_mode=None, save_to_dir = save_dir,shuffle=False, seed=1)
+    image_generator = ImageDataGenerator().flow_from_directory(inputPath, color_mode ='grayscale', target_size=(224,224), batch_size=bs, class_mode=None, save_to_dir = save_dir, shuffle=False,seed=1)
+    mask_generator =  ImageDataGenerator().flow_from_directory(outputPath,  color_mode ='grayscale', target_size=(224,224), batch_size=bs, class_mode=None, save_to_dir = save_dir,shuffle=False, seed=1)
 
     print (image_generator[0].shape)
     print (mask_generator[0].shape)
@@ -58,11 +58,3 @@ def loadData(inputPath, outputPath, batch_size=32,save_dir=None):
     for (img,mask) in train_generator:
         img,mask = adjustData(img,mask)
         yield (img,mask)
-
-def showImage(arr, i, title=None):
-    if (title != None):
-        plt.title(title)
-        
-    plt.imshow(arr[i, ..., 0], cmap = 'gray')
-    plt.show()
-    print(arr[i].shape)
