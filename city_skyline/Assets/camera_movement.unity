@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 115510198}
   - component: {fileID: 115510197}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Block_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -923,11 +923,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Scene: {fileID: 1609166515}
-  MarkedObject: {fileID: 2079036960}
+  MarkedObject: {fileID: 115510195}
   WoodenMat: {fileID: 2100000, guid: 7feae3db6aee6654897eb6e8032eb42a, type: 2}
   MarkedMat: {fileID: 2100000, guid: 69d15370145bd4d4c9eb133bf93e1c0f, type: 2}
   AmoutScreenshot: 50
   BoundingBoxes: {fileID: 1731865163}
+  originalPath: '"C:/Users/wohlfart/Desktop/Datenset_Block2/Original"'
+  markedPath: '"C:/Users/wohlfart/Desktop/Datenset_Block2/Marked"'
 --- !u!114 &341682148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1858,7 +1860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 658801531}
   m_Layer: 0
-  m_Name: Building02
+  m_Name: P
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2994,7 +2996,7 @@ GameObject:
   - component: {fileID: 995936388}
   - component: {fileID: 995936387}
   m_Layer: 0
-  m_Name: Cube (15)
+  m_Name: Block_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
