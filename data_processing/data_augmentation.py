@@ -12,7 +12,7 @@ from skimage.color import rgb2gray
 from PIL import Image
 
 ### Variables ###
-inputPath = 'C:/Users/wohlfart/Desktop/testAug/images/data'
+inputPath = '/home/dan/Desktop/Datenset_Tower (Augmented)/validate/images/data'
 imageSize = (224,224)   # size of outputimages
 
 ### Functions ###
