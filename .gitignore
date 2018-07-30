@@ -26,6 +26,7 @@ ExportedObj/
 *.svd
 *.pdb
 *.opendb
+*.rar
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
