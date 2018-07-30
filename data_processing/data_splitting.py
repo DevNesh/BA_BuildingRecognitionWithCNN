@@ -59,6 +59,5 @@ def traverseOverImageFolders(directoryOriginal):
 if (os.path.exists(inputOriginal)):
 
     traverseOverImageFolders(inputOriginal)
-
 else:
     print ('The inputPath does not exist')

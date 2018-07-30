@@ -2,6 +2,7 @@ import keras.backend as K
 from keras import metrics
 from keras.losses import *
 
+# f1 == dice 
 
 def f1(y_true, y_pred):
     y_true_f = K.flatten(y_true)
