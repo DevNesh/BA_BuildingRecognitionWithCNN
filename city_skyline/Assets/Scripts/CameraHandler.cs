@@ -10,18 +10,22 @@ public class CameraHandler : MonoBehaviour {
 	public Material MarkedMat;
 	public int AmoutScreenshot;
 	public GameObject BoundingBoxes;
+	public string originalPath;
+	public string markedPath;
+
 
 	private bool _isCoroutineFinished;
 	private int _index;
 
+
 	public string ScreenshotDir
 	{
-		get { return "C:/Users/wohlfart/Desktop/Datenset_L/Original"; }
+		get { return originalPath; }
 	}
 
 	public string ScreenshotDir2
 	{
-		get { return "C:/Users/wohlfart/Desktop/Datenset_L/Marked"; }
+		get { return markedPath; }
 	}
 
 

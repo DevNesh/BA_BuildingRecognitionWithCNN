@@ -4,6 +4,7 @@ import utils as ip
 import random 
 import skimage.io as io 
 import scipy as sc
+from scipy import misc
 from skimage import data
 from skimage.transform import rescale, resize
 from skimage.util import random_noise
@@ -95,8 +96,8 @@ def traverseOverImageFolders(directoryOriginal, directoryMarked):
         while index < len(imagesOriginal):
 
             #read the images into a np array 
-            img1 = io.imread(inputPathOriginal + '/' + imagesOriginal[index], True)
-            img1 = resize(img1, imageSize)
+            img1 = misc.imread(inputPathOriginal + '/' + imagesOriginal[index], True)
+            print(img1.dtype)
             img2 = io.imread(inputPathMarked + '/' + imagesMarked[index], True)
             img2 = resize(img2, imageSize)
 
