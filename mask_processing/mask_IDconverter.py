@@ -10,8 +10,8 @@ from skimage.color import rgb2gray
 from PIL import Image
 
 ### Variables ###
-inputPathMask =   '/home/dan/Desktop/combined_masks/masks_02/data'
-outputPathMask = '/home/dan/Desktop/combined_masks/masks_02/data'
+inputPathMask =  '/home/dan/Desktop/FINAL_DATASETS/Datenset_P/train/masks2/data'
+outputPathMask = '/home/dan/Desktop/FINAL_DATASETS/Datenset_P/train/masks/data'
 id = 255
 treshold = 50
 
@@ -24,9 +24,10 @@ def traverseOverImageFolders(directoryOriginal):
         while index < len(imagesOriginal):
 
             img1 = io.imread(inputPathMask + '/' + imagesOriginal[index], True)
-            arr = np.array(img1)
-            arr[arr > treshold] = id
-            Image.fromarray(arr).save(outputPathMask + '/' + imagesOriginal[index])
+            blank_image = np.zeros((224,224), dtype=np.uint8)
+            blank_image[img1 > treshold] = id
+
+            Image.fromarray(blank_image).save(outputPathMask + '/' + imagesOriginal[index])
 
             index += 1
             if (index % 200 == 0): print (index)

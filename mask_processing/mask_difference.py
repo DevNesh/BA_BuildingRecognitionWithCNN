@@ -6,7 +6,7 @@ from PIL import Image
 
 def compareMasks(prediction, groundTruth):
     
-    diff_img = np.zeros((252,261,3), dtype=np.uint8)
+    diff_img = np.zeros((prediction.shape[0],prediction.shape[1],3), dtype=np.uint8)
 
     for x in range(prediction.shape[0]):
         for y in range(prediction.shape[1]):
@@ -21,9 +21,9 @@ def compareMasks(prediction, groundTruth):
  
 
 
-img1 = io.imread('/home/dan/Desktop/pred.png', True)
-img2 = io.imread('/home/dan/Desktop/gt.png', True)
+img1 = io.imread('/home/dan/Desktop/01_gt.png', True)
+img2 = io.imread('/home/dan/Desktop/01_pred.png', True)
 
 result = compareMasks(img1, img2)
-Image.fromarray(result).save('/home/dan/Desktop/diff1.png')
+Image.fromarray(result).save('/home/dan/Desktop/diff3.png')
 

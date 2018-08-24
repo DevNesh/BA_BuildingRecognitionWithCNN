@@ -10,7 +10,7 @@ from skimage.color import rgb2gray
 from sklearn.model_selection import train_test_split
 
 
-foldername = 'Datenset_TowerBuilding'
+foldername = 'Datenset_Block3'
 
 ### Variables ###
 inputOriginal = '/home/dan/Desktop/' + foldername + '/train/images/data'
@@ -33,11 +33,6 @@ def traverseOverImageFolders(directoryOriginal):
 
         train_images, test_images ,train_masks, test_masks = train_test_split(images, masks, test_size=0.3, random_state=42)
         test_images, validate_images, test_masks, validate_masks = train_test_split(test_images, test_masks, test_size=0.5, random_state=42)
-
-        print(len(validate_images))
-        print(len(validate_masks))
-        print(len(test_images))
-        print(len(test_masks))
 
         index = 0
         while index < len(test_images):

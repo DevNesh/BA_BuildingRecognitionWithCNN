@@ -9,6 +9,8 @@ from skimage import img_as_ubyte
 import numpy as np
 import pandas as pd
 from glob import glob
+import os, errno
+from PIL import Image
 
 #### Read Image File for Numpy Arrays 
 
@@ -44,6 +46,21 @@ def adjustData(img,mask):
     img = img/255.
     mask = mask/255.
     return (img,mask)
+
+def compareMasks(prediction, groundTruth):
+    
+    diff_img = np.zeros((224,224,3), dtype=np.uint8)
+
+    for x in range(prediction.shape[0]):
+        for y in range(prediction.shape[1]):
+            if ((prediction[x,y] == groundTruth[x,y]) & groundTruth[x,y].all() != False):
+                diff_img[x,y] = (255,255,255)
+            elif (prediction[x,y] > groundTruth[x,y]):
+                diff_img[x,y] = (255,0,0)
+            elif (groundTruth[x,y] > prediction[x,y]):
+                diff_img[x,y] = (0,255,0)
+
+    return diff_img  
 
 def loadData(inputPath, outputPath, bs = 32, save_dir=None):
 
