@@ -1,8 +1,11 @@
+'''
+Module, lists all metrics and loss functions that can be used 
+for training a neural network.
+'''
+
 import keras.backend as K
 from keras import metrics
 from keras.losses import *
-
-# f1 == dice 
 
 def f1(y_true, y_pred):
     y_true_f = K.flatten(y_true)
@@ -69,7 +72,6 @@ def bce_img(y_true, y_pred):
 def f1_bce(y_true, y_pred):
     return f1_loss(y_true, y_pred) + bce_img(y_true, y_pred)
 
-# FP + FN
 def error(y_true, y_pred):
     y_true_f = K.flatten(y_true)
     y_pred_f = K.flatten(y_pred)
