@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 38549867}
   - component: {fileID: 38549866}
   - component: {fileID: 38549865}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Scene_BoundingBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +351,7 @@ Transform:
   m_LocalScale: {x: 11, y: 5, z: 11}
   m_Children: []
   m_Father: {fileID: 1609166516}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &115510197
 MeshRenderer:
@@ -691,7 +691,7 @@ GameObject:
   - component: {fileID: 250286999}
   - component: {fileID: 250286998}
   m_Layer: 0
-  m_Name: Cube (9)
+  m_Name: Group4_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -709,7 +709,7 @@ Transform:
   m_LocalScale: {x: 4, y: 4, z: 6}
   m_Children: []
   m_Father: {fileID: 1609166516}
-  m_RootOrder: 6
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &250286998
 MeshRenderer:
@@ -826,7 +826,7 @@ Transform:
   m_LocalScale: {x: 5, y: 6, z: 4}
   m_Children: []
   m_Father: {fileID: 1609166516}
-  m_RootOrder: 15
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &262307728
 MeshRenderer:
@@ -981,13 +981,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Scene: {fileID: 1609166515}
-  MarkedObject: {fileID: 262307726}
+  MarkedObject: {fileID: 250286996}
   WoodenMat: {fileID: 2100000, guid: 7feae3db6aee6654897eb6e8032eb42a, type: 2}
   MarkedMat: {fileID: 2100000, guid: 69d15370145bd4d4c9eb133bf93e1c0f, type: 2}
-  AmoutScreenshot: 50
   BoundingBoxes: {fileID: 1731865163}
-  originalPath: C:/Users/wohlfart/Desktop/Datenset_Block4/Original
-  markedPath: C:/Users/wohlfart/Desktop/Datenset_Block4/Marked
+  originalPath: C:/Users/wohlfart/Desktop/Datenset_test/Original
+  markedPath: C:/Users/wohlfart/Desktop/Datenset_test/Marked
 --- !u!114 &341682148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -999,20 +998,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3049356567586dc4e94a3b173318057c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraHandler: {fileID: 341682147}
+  ScreenshotHandler: {fileID: 341682147}
   XRadiusSteps: 10
   YRotationSteps: 12
   ZRotationSteps: 8
-  FocusPoint: {fileID: 1993615346955758, guid: 025e27d7f63db6044b31bc1b30e5a8c2, type: 2}
-  Target: {fileID: 703549047}
-  minDistanceFocus: 40
-  maxDistanceFocus: 110
-  ScenePoint: {fileID: 1865625459234320, guid: ebdd1deec6f3cc941a4d4de3f0f920ab, type: 2}
+  minDistance: 40
+  maxDistance: 110
   BoundingBox: {fileID: 38549864}
-  CamPoint: {fileID: 1123093537427518, guid: 2c3847fabc94d5e42aeef261affcce2d, type: 2}
-  minDistanceScene: 40
-  maxDistanceScene: 110
+  CamPosPoint: {fileID: 1993615346955758, guid: 025e27d7f63db6044b31bc1b30e5a8c2,
+    type: 2}
+  ViewPoint: {fileID: 1865625459234320, guid: ebdd1deec6f3cc941a4d4de3f0f920ab, type: 2}
   CubeDevisions: 1
+  drawPoints: 1
 --- !u!114 &341682149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1233,7 +1230,7 @@ GameObject:
   - component: {fileID: 390768742}
   - component: {fileID: 390768741}
   - component: {fileID: 390768740}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1409,7 +1406,7 @@ GameObject:
   - component: {fileID: 431051416}
   - component: {fileID: 431051415}
   m_Layer: 0
-  m_Name: Cube (6)
+  m_Name: Group3_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1427,7 +1424,7 @@ Transform:
   m_LocalScale: {x: 11, y: 7, z: 4}
   m_Children: []
   m_Father: {fileID: 1609166516}
-  m_RootOrder: 3
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &431051415
 MeshRenderer:
@@ -1773,7 +1770,7 @@ GameObject:
   - component: {fileID: 589103023}
   - component: {fileID: 589103022}
   m_Layer: 0
-  m_Name: Cube (21)
+  m_Name: Group2_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1791,7 +1788,7 @@ Transform:
   m_LocalScale: {x: 4, y: 2, z: 9}
   m_Children: []
   m_Father: {fileID: 1609166516}
-  m_RootOrder: 14
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 137.53, z: 0}
 --- !u!23 &589103022
 MeshRenderer:
@@ -1862,7 +1859,7 @@ GameObject:
   - component: {fileID: 643553496}
   - component: {fileID: 643553495}
   m_Layer: 0
-  m_Name: Cube (8)
+  m_Name: Group4_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1880,7 +1877,7 @@ Transform:
   m_LocalScale: {x: 4, y: 4, z: 6}
   m_Children: []
   m_Father: {fileID: 1609166516}
-  m_RootOrder: 5
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &643553495
 MeshRenderer:
@@ -1966,7 +1963,7 @@ Transform:
   - {fileID: 1880069801}
   - {fileID: 1409995722}
   m_Father: {fileID: 1609166516}
-  m_RootOrder: 10
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &695314970
 GameObject:
@@ -2086,7 +2083,7 @@ Transform:
   - {fileID: 1833446230}
   - {fileID: 1058523806}
   m_Father: {fileID: 1609166516}
-  m_RootOrder: 17
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &781308987
 Prefab:
@@ -2810,7 +2807,7 @@ GameObject:
   - component: {fileID: 938828230}
   - component: {fileID: 938828229}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: Group3_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2828,7 +2825,7 @@ Transform:
   m_LocalScale: {x: 11, y: 7, z: 4}
   m_Children: []
   m_Father: {fileID: 1609166516}
-  m_RootOrder: 2
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &938828229
 MeshRenderer:
@@ -2916,7 +2913,7 @@ Transform:
   - {fileID: 13328703}
   - {fileID: 1561244383}
   m_Father: {fileID: 1609166516}
-  m_RootOrder: 9
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &951245524
 GameObject:
@@ -3157,7 +3154,7 @@ Transform:
   m_LocalScale: {x: 12, y: 10, z: 6}
   m_Children: []
   m_Father: {fileID: 1609166516}
-  m_RootOrder: 11
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &995936387
 MeshRenderer:
@@ -3795,7 +3792,7 @@ Transform:
   m_LocalScale: {x: 4, y: 10, z: 11}
   m_Children: []
   m_Father: {fileID: 1609166516}
-  m_RootOrder: 16
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1279231816
 MeshRenderer:
@@ -4342,7 +4339,7 @@ GameObject:
   - component: {fileID: 1442897199}
   - component: {fileID: 1442897198}
   - component: {fileID: 1442897197}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4815,8 +4812,15 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 115510196}
+  - {fileID: 703549048}
   - {fileID: 1772514903}
+  - {fileID: 939147140}
+  - {fileID: 658801531}
+  - {fileID: 2079036961}
+  - {fileID: 995936386}
+  - {fileID: 115510196}
+  - {fileID: 1279231815}
+  - {fileID: 262307727}
   - {fileID: 938828228}
   - {fileID: 431051414}
   - {fileID: 2101518258}
@@ -4824,15 +4828,8 @@ Transform:
   - {fileID: 250286997}
   - {fileID: 1834277252}
   - {fileID: 1905694257}
-  - {fileID: 939147140}
-  - {fileID: 658801531}
-  - {fileID: 995936386}
-  - {fileID: 2079036961}
   - {fileID: 1884617094}
   - {fileID: 589103021}
-  - {fileID: 262307727}
-  - {fileID: 1279231815}
-  - {fileID: 703549048}
   - {fileID: 1943168667}
   - {fileID: 1804159976}
   - {fileID: 460528982}
@@ -5069,7 +5066,7 @@ GameObject:
   - component: {fileID: 1668730246}
   - component: {fileID: 1668730245}
   - component: {fileID: 1668730244}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5330,7 +5327,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1731865164}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Viewpoint_BoundingBoxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5632,7 +5629,7 @@ GameObject:
   - component: {fileID: 1834277254}
   - component: {fileID: 1834277253}
   m_Layer: 0
-  m_Name: Cube (18)
+  m_Name: Group4_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5650,7 +5647,7 @@ Transform:
   m_LocalScale: {x: 4, y: 4, z: 6}
   m_Children: []
   m_Father: {fileID: 1609166516}
-  m_RootOrder: 7
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1834277253
 MeshRenderer:
@@ -5986,7 +5983,7 @@ GameObject:
   - component: {fileID: 1884617096}
   - component: {fileID: 1884617095}
   m_Layer: 0
-  m_Name: Cube (20)
+  m_Name: Group2_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6004,7 +6001,7 @@ Transform:
   m_LocalScale: {x: 4, y: 2, z: 9}
   m_Children: []
   m_Father: {fileID: 1609166516}
-  m_RootOrder: 13
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 137.53, z: 0}
 --- !u!23 &1884617095
 MeshRenderer:
@@ -6073,7 +6070,7 @@ GameObject:
   - component: {fileID: 1891461827}
   - component: {fileID: 1891461826}
   - component: {fileID: 1891461825}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6159,7 +6156,7 @@ GameObject:
   - component: {fileID: 1905694259}
   - component: {fileID: 1905694258}
   m_Layer: 0
-  m_Name: Cube (19)
+  m_Name: Group4_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6177,7 +6174,7 @@ Transform:
   m_LocalScale: {x: 4, y: 4, z: 6}
   m_Children: []
   m_Father: {fileID: 1609166516}
-  m_RootOrder: 8
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1905694258
 MeshRenderer:
@@ -6499,7 +6496,7 @@ Transform:
   - {fileID: 2118055521}
   - {fileID: 695314971}
   m_Father: {fileID: 1609166516}
-  m_RootOrder: 12
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2093435590
 GameObject:
@@ -6600,7 +6597,7 @@ GameObject:
   - component: {fileID: 2101518260}
   - component: {fileID: 2101518259}
   m_Layer: 0
-  m_Name: Cube (7)
+  m_Name: Group3_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6618,7 +6615,7 @@ Transform:
   m_LocalScale: {x: 11, y: 7, z: 4}
   m_Children: []
   m_Father: {fileID: 1609166516}
-  m_RootOrder: 4
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2101518259
 MeshRenderer:
