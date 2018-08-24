@@ -79,6 +79,16 @@ def mergeMask(maskList, filename):
     
     return result
 
+
+def postProcessMask(mask, threshold = 0.3):
+    '''
+    Setting the predicted propabilities to pixel the values 
+    black or white, depending on the threshold.  
+    '''
+    mask[mask > threshold] = 255
+    mask[mask <= threshold] = 0
+    return mask
+
 ### Image Preparation for Neural Network  ###
 
 def adjustData(img,mask):
