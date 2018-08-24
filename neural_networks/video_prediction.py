@@ -1,4 +1,8 @@
 # coding: utf-8
+'''
+Module, executes a model prediction on an image or video.
+'''
+
 from keras.models import load_model
 from keras.models import model_from_json
 from keras.optimizers import *
@@ -12,7 +16,7 @@ from skimage import img_as_ubyte
 from loss_metrics import *
 from helper import * 
 
-
+### Data ###
 IMG_PATH = "C:/Users/wohlfart/Desktop/testbild.jpg"
 VID_PATH = "C:/Users/wohlfart/Videos/testvideo.mp4"
 MODEL_JSON = "model_test.json"
@@ -21,11 +25,11 @@ MODEL_WEIGHTS = "model_test.h5"
 
 ###### Functions ######
 
-'''
-Function, loads the trained Neural Network for prediction.
-'''
 def loadModel(jsonPath, weightsPath):
-
+    '''
+    Function, loads the trained Neural Network for prediction.
+    '''
+    # load the model
     json_file = open(jsonPath, encoding="utf8")
     loaded_model_json = json_file.read()
     json_file.close()
@@ -35,16 +39,16 @@ def loadModel(jsonPath, weightsPath):
     loaded_model.load_weights(weightsPath)
     print("Loaded model from disk")
 
-    # evaluate loaded model on test data
+    # compile loaded model 
     loaded_model.compile(optimizer=Adam(lr=0.0001), loss=iou_loss)
 
     return loaded_model
 
-'''
-Function, predict an image and draws a rectangle around the predicted image.
-'''
-def predict(model,frame,grayscale,showResult):
 
+def predict(model,frame,grayscale,showResult):
+    '''
+    Function, predict an image and draws a rectangle around the predicted image.
+    '''
     # convert to the right format and predict
     if (not grayscale):
         img = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -95,13 +99,16 @@ def predict(model,frame,grayscale,showResult):
     return frame
 
 def loadPicture(model):
+    '''
+    Function, loads a picture and processes a prediction with the given neural network
+    '''
     img = io.imread(IMG_PATH)
     predict(model, img,True, True)
 
-'''
-Function, loads a video and processes a prediction with a neural network
-'''
 def loadVideo(model):
+    '''
+    Function, loads a video and processes a prediction with a neural network
+    '''
     # load the video
     capture = cv2.VideoCapture(VID_PATH)
 
@@ -112,7 +119,6 @@ def loadVideo(model):
         ret, frame = capture.read()
         
         result = predict(model,frame,False,False)
-
         cv2.imshow('frame',result)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -124,7 +130,7 @@ def loadVideo(model):
     cv2.destroyAllWindows()
 
 
-###### Executable Code ######
+### Calls ###
 model = loadModel(MODEL_JSON, MODEL_WEIGHTS)
 loadPicture(model)
 loadVideo(model)
