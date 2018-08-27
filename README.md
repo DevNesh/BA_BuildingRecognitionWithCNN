@@ -45,7 +45,7 @@ To create a dataset for a specific building do the following steps:
 2. Load the *wooden_model* Scene. You will find this scene under: *Assets/Scenes/wooden_model*
 3. Click on the *Main Camera* Object in the Hierarchy and look at the *Screenshot Handler (Script)* in the Inspector.
 
-![ScreenshotHandler](https://github.com/absolutehh/HPAVRClient/blob/feature/point-cloud/HPAVRClient/Assets/Scripts/PointCloudRenderer/README_Resources/example_PCfolder.PNG)
+![ScreenshotHandler](https://github.com/DevNesh/BA_SceneSimulation/blob/master/readme_ressources/screenshot_unity1.PNG)
 * Put the reference from the building you want to mark into the *Marked Object* field. Open the * Buildings* Gameobject in the Hierachy and drag and drop one of the child elements to the *Marked Object* field in the Inspector (marked in red)
 
     *  After that create some folders on your explorer where the images can be saved. A structure like this is highly recommended:  
@@ -62,7 +62,7 @@ To create a dataset for a specific building do the following steps:
 
 4. Click on the *Main Camera* Object in the Hierarchy and look at the *Camera Handler (Script)* in the Inspector.
 
-![CameraHandler](https://github.com/absolutehh/HPAVRClient/blob/feature/point-cloud/HPAVRClient/Assets/Scripts/PointCloudRenderer/README_Resources/example_PCfolder.PNG)
+![CameraHandler](https://github.com/DevNesh/BA_SceneSimulation/blob/master/readme_ressources/screenshot_unity2.PNG)
 
 * Justify the resolutions for the camera positions by setting the values marked in red
 * Justify the viewpoints by setting the *Cube Devisions* marked in blue
@@ -169,6 +169,6 @@ For training a neural network it is recommended to use the *train_network_big.ip
 * Open the notebook 
 * Set the values in the second cell 
 
- ![NeuralNetwork Cell 2](https://github.com/absolutehh/HPAVRClient/blob/feature/point-cloud/HPAVRClient/Assets/Scripts/PointCloudRenderer/README_Resources/example_PCfolder.PNG)
+ ![NeuralNetwork Cell 2](https://github.com/DevNesh/BA_SceneSimulation/blob/master/readme_ressources/screenshot_neuralnetwork.PNG)
 
 * Execute every cell step by step and change the parameter to your usecase
