@@ -13,7 +13,7 @@ This implementation was transfered from a biomedical task developed by [Pietz](h
 
 Based on the following virtual model:
 
-![Wooden Model](https://github.com/DevNesh/BA_SceneSimulation/blob/master/screenshot_woodenModel.PNG)   
+![Wooden Model](https://github.com/DevNesh/BA_BuildingRecognitionWithCNN/blob/master/readme_ressources/screenshot_woodenModel.PNG)   
 
 
 ## Summary ##
