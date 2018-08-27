@@ -17,7 +17,7 @@ Based on the following virtual model:
 
 
 ## Summary ##
- The repository is divided into three parts:
+ The repository is divided into the following parts:
 
 #### ./city_skyline ####
 Unity Project, contains a virtual scene that looks like a wooden model. A camera algorithm is developed, that puts the camera on different positions around the model and takes two pictures of the scene from this position 
@@ -139,7 +139,7 @@ To prepare the data for the neural network do the following steps:
     C:\Users\example\Path\To\File> python data_augmentation.py
     ```
 
-6. For splitting the data into train/test/validate create new directories in this way:
+6. For splitting the data into train/test/validate, create new directories like this:
     ```
         .
         ├── Dataset_BuildingX
@@ -172,10 +172,10 @@ To prepare the data for the neural network do the following steps:
     ...
     ```
 
-8. Save the file and execute the python script. Your data will be splittet and is ready for training the U-Net
+8. Save the file and execute the python script. Your data will be splitted and is ready for training the U-Net
 
     ```
-    C:\Users\example\Path\To\File> python data_augmentation.py
+    C:\Users\example\Path\To\File> python data_splitting.py
     ```
 
 ## Neural Network ##
