@@ -4,6 +4,14 @@ Bachelor Thesis - Project files for my bachelor thesis.
 
 This repository contains the code that was developed for the implementation of the given task.
 
+For recognizing buildings from a virtual scene a CNN called [U-Net](https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/) was used. The recognition tasked was solved with a segmentation. 
+This example shows how the networks basically works.
+
+This implementations was transfered from a biomedical task developed by [Pietz](https://github.com/pietz/knee-mri-segmentation)   
+
+![Overview](https://github.com/DevNesh/BA_SceneSimulation/blob/master/readme_ressources/overview.png)   
+
+
 ## Summary ##
  The repository is divided into three parts:
 
