@@ -19,21 +19,21 @@ Based on the following virtual model:
 ## Summary ##
  The repository is divided into three parts:
 
-#### city_skyline ####
+#### ./city_skyline ####
 Unity Project, contains a virtual scene that looks like a wooden model. A camera algorithm is developed, that puts the camera on different positions around the model and takes two pictures of the scene from this position 
 * **ScreenshotHandler, CameraHandler** 
     * a normal picture with the wooden model
     * a picture where the selected buliding is marked with a red material 
 
-* a camera flight was made, where the camera flies on a defined spline root around the scene. 
+* a camera flight was made, where the camera flies on a defined spline root around the scene. The spline root is defined in the Hierachy. The necessary scripts are added to the *Main Camera*.
 
-#### data_processing ####
+#### ./data_processing ####
 Python implementations for prepocessing the images for the training of the neural network. 
 * **data_preprocessing.py**, a module that can be used for creating the ground truth images based on the taken screenshots and the input pictures. 
 * **data_augmentation.py**, a module that can be used to add data augmentation to the dataset.
 * **data_splitting.py**, a module that can be used for splitting the data into train, test and validation set. 
 
-#### neural_networks ####
+#### ./neural_networks ####
 Jupyter Notebook implementations that are handeling different notebooks for working with a neural Network.
 * **train_network_big.ipynb**, notebook for training a U-Net with Keras DataGenerators
 * **train_network_small.ipynb**, notebook for training a U-Net without Keras DataGenerators
@@ -41,6 +41,9 @@ Jupyter Notebook implementations that are handeling different notebooks for work
 * **evaluation.ipynb**, notebook for loading a trained U-Net and evaluating this on a testset
 * **prediction_small.ipynb**, notebook for creating predicitons from a trained U-Net.
 * **snippet.ipynb**, notebook with incoherent code snippets
+
+#### ./video_prediction_example.mp4 ####
+An example of how the network performs on a video, that should simulate the user interactions. 
 
 ## Prerequisites
 For this implementation several things are needed: 
